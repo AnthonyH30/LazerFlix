@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.lists{
+    margin-top: -100px;
+}
+
+.loading{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 99;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*---------Modal--------*/
+
+.outside-modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.modal-content{
+    background-color: #111;
+    height: 250px;
+    width: 250px;
+    position: fixed;
+    top: 70px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 0px 8px 8px;
+    animation: modal .4s;
+    outline: none;
+}
+
+@keyframes modal{
+    from{
+        opacity: 0;
+        transform: translate3d(0, -60px, 0);
+    }to{
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.modal-content ul{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    list-style: none;
+}
+
+.modal-content li{
+    color: #0D7E80;
+    cursor: pointer;
+    transform: scale(0.9);
+    transition: all ease 0.3s;
+    font-size: 20px;
+}
+
+.modal-content li:hover{
+    transform: scale(1);
+}

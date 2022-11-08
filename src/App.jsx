@@ -1,12 +1,13 @@
+import { MyListProvider } from './Contexts/MyListContext';
 import Rotas from './Routes/Routes';
 
 
 function App() {
 
   return (
-    <div>
+    <MyListProvider>
       <Rotas />
-    </div>
+    </MyListProvider>
   )
 }
 

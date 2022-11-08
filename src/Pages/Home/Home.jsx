@@ -5,10 +5,8 @@ import MovieRoll from '../../Components/MovieRow/MovieRoll';
 import FeaturedMovie from '../../Components/FeaturedMovie/FeaturedMovie';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
-import  Modal  from 'react-modal';
 
 
-Modal.setAppElement('#root');
 function Home() {
     const [movieList, setMovieList] = useState([]);
     const [featuredData, setFeaturedData] = useState(null)
@@ -43,30 +41,10 @@ function Home() {
         window.removeEventListener('scroll', scrollListener);
       }
     },[])
-
-    function handleModal(){
-      setModalIsOpen(!modalIsOpen);
-    }
-
-    function closeModal(){
-      setModalIsOpen(false);
-    }
   
     return (
       <div className='page'>
-        <Header black={blackHeader} handleModal={handleModal} />
-        <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        overlayClassName='outside-modal'
-        className='modal-content'
-        >
-          <ul>
-            <li>Profile</li>
-            <li>My List</li>
-            <li>Logout</li>
-          </ul>
-        </Modal>
+        <Header black={blackHeader} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
   
         {featuredData &&
           <FeaturedMovie item={featuredData} />

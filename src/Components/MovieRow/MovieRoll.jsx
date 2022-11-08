@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MyListContext } from "../../Contexts/MyListContext";
 import "./movieroll.css";
 import chevronRight from "../../assets/chevron-right.svg";
 import chevronLeft from "../../assets/chevron-left.svg";
@@ -9,9 +10,10 @@ import LikeBtn from '../../assets/like.svg';
 
 Modal.setAppElement("#root");
 function MovieRoll({ title, items }) {
+
+  const { movieModal, movieModalIsOpen, modalMovie, closeMovieModal, addMovieList } = useContext(MyListContext);
+
   const [scrollX, setScrollX] = useState(0);
-  const [movieModal, setMovieModal] = useState([]);
-  const [movieModalIsOpen, setMovieModalIsOpen] = useState(false);
 
   const handleLeftArrow = () => {
     let x = scrollX + Math.round(window.innerWidth / 2);
@@ -32,19 +34,12 @@ function MovieRoll({ title, items }) {
 
     const getYear = (item) => {
         let firstDate = new Date(item.first_air_date);
-        return firstDate
+        if(item.first_air_date === undefined){
+          return null
+        }else{
+          return firstDate
+        }
     }
-
-
-  const modalMovie = (item) => {
-    setMovieModal([item]);
-    console.log(movieModal);
-    setMovieModalIsOpen(true);
-  };
-
-  const closeMovieModal = () => {
-    setMovieModalIsOpen(false);
-  };
 
   return (
     <div className="movierow">
@@ -106,7 +101,7 @@ function MovieRoll({ title, items }) {
                     {item.vote_average} Pontos
                   </div>
                   <div className="movieModal--year">
-                    {getYear(item).getFullYear()}
+                    {item.first_air_date && getYear(item).getFullYear()}
                   </div>
                 </div>
                 <div className="movieModal--description">
@@ -116,7 +111,7 @@ function MovieRoll({ title, items }) {
                 </div>
                 <div className="movieModal--buttons">
                   <button className="movieModal--watchbutton">► Assistir</button>
-                  <figure  className="btn-info">
+                  <figure onClick={() => addMovieList(item)} className="btn-info">
                     <img src={plusBtn} alt="add to my list" />
                   </figure>
                   <figure className="btn-info">

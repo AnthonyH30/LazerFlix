@@ -1,7 +1,10 @@
-import React from 'react';
+import React,{ useContext } from 'react';
+import { MyListContext } from '../../Contexts/MyListContext';
 import './featuredmovie.css';
 
 function FeaturedMovie({item}) {
+
+    const { addMovieList } = useContext(MyListContext)
 
     let firstDate = new Date(item.first_air_date);
     let genres = [];
@@ -25,8 +28,8 @@ function FeaturedMovie({item}) {
                 </div>
                 <div className="featured--description">{item.overview.length > 220 ? `${item.overview.slice(0, 220)}...` : item.overview}</div>
                 <div className="featured--buttons">
-                    <a className='featured--watchbutton' href={`/watch/${item.id}`}>► Assistir</a>
-                    <a className='featured--mylistbutton' href={`/watch/${item.id}`}>+ Minha Lista</a>
+                    <button className='featured--watchbutton' >► Assistir</button>
+                    <button onClick={() => addMovieList(item)} className='featured--mylistbutton' >+ Minha Lista</button>
                 </div>
                 <div className="featured--genres">
                     <strong>Gêneros:</strong> {genres.join(', ')}

@@ -1,11 +1,28 @@
-import React from 'react';
+import React,{ useEffect, useState } from 'react';
 import './header.css';
 import  Modal  from 'react-modal';
 import { Link } from 'react-router-dom';
 
 
 Modal.setAppElement('#root');
-function Header({black, modalIsOpen, setModalIsOpen}) {
+function Header() {
+  const [blackHeader, setBlackHeader] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  useEffect(() => {
+    const scrollListener = () => {
+      if(window.scrollY > 20){
+        setBlackHeader(true)
+      }else{
+        setBlackHeader(false)
+      }
+    }
+
+    window.addEventListener('scroll', scrollListener);
+    return () => {
+      window.removeEventListener('scroll', scrollListener);
+    }
+  },[])
 
   function handleModal(){
     setModalIsOpen(!modalIsOpen);
@@ -16,9 +33,11 @@ function Header({black, modalIsOpen, setModalIsOpen}) {
   }
 
   return (
-    <header className={black ? 'black' : ''}>
+    <header className={blackHeader ? 'black' : ''}>
         <figure className="header--logo">
+          <Link to='/'>
                 <img src="https://cdn.discordapp.com/attachments/773364102071975976/1037866782934962197/logolazerflix.png" alt="LazerFlix" />
+          </Link>
         </figure>
         <figure className='header--user'>
                 <img onClick={handleModal} src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="usuário" />

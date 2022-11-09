@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MyList from "../Components/MyList/MyList";
+import MyList from "../Pages/MyList/MyList";
 import Error from "../Pages/Error/Error";
 import Home from "../Pages/Home/Home";
 

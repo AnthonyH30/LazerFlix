@@ -5,13 +5,12 @@ import MovieRoll from '../../Components/MovieRow/MovieRoll';
 import FeaturedMovie from '../../Components/FeaturedMovie/FeaturedMovie';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
+import { ToastContainer } from 'react-toastify';
 
 
 function Home() {
     const [movieList, setMovieList] = useState([]);
     const [featuredData, setFeaturedData] = useState(null)
-    const [blackHeader, setBlackHeader] = useState(false)
-    const [modalIsOpen, setModalIsOpen] = useState(false)
   
     useEffect(()=>{
       const loadAll = async () =>{
@@ -27,24 +26,11 @@ function Home() {
       loadAll()
     },[])
   
-    useEffect(() => {
-      const scrollListener = () => {
-        if(window.scrollY > 20){
-          setBlackHeader(true)
-        }else{
-          setBlackHeader(false)
-        }
-      }
-  
-      window.addEventListener('scroll', scrollListener);
-      return () => {
-        window.removeEventListener('scroll', scrollListener);
-      }
-    },[])
+
   
     return (
       <div className='page'>
-        <Header black={blackHeader} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+        <Header />
   
         {featuredData &&
           <FeaturedMovie item={featuredData} />
@@ -63,6 +49,7 @@ function Home() {
           <img src="https://rchandru.com/images/portfolio/loading.gif" alt="Loading" />
         </div>
         }
+        <ToastContainer />
       </div>
     )
   }

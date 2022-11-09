@@ -1,0 +1,39 @@
+.myListContainer{
+    padding-top: 70px;
+}
+
+.list{
+    padding-inline: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.movieCard{
+    width: 150px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.movieCard img{
+    width: 100%;
+    transform: scale(0.9);
+    transition: all ease 0.3s;
+}
+
+.movieCard img:hover{
+    transform: scale(1);
+}
+
+@media(max-width: 768px){
+    .list{
+        padding-inline: 10px;
+    }
+
+    .movieCard{
+        width: 120px;
+    }
+}

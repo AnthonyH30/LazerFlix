@@ -1,19 +1,20 @@
 import React,{ createContext, useState } from "react";
 import { toast } from 'react-toastify';
+import useLocalStorage from '../CustomHooks/useLocalStorage';
 
 export const MyListContext = createContext()
 
 export function MyListProvider({children}){
     const [movieModal, setMovieModal] = useState([]);
     const [movieModalIsOpen, setMovieModalIsOpen] = useState(false);
-    const [myListMovies, setMyListMovies] = useState([]);
+    const [myListMovies, setMyListMovies] = useLocalStorage('movies', []);
     const [movieListModal, setMovieListModal] = useState([]);
     const [listModalIsOpen, setListModalIsOpen] = useState(false)
 
 
     function addMovieList(item){
       const moviesInList = [...myListMovies];
-
+      
       const movies = moviesInList.find((i) => i.id === item.id)
 
       if(!movies){

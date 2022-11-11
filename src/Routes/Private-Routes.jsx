@@ -9,7 +9,7 @@ function Rotas(){
         <Router>
             <Routes>
                     <Route path='/' exact element={<Home />} />
-                    <Route path='/mylist' element={<MyList />} />
+                    <Route path='/mylist' exact element={<MyList />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path='*' element={<Error />} />
             </Routes>

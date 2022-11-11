@@ -54,7 +54,7 @@ function Header() {
           <ul>
             <Link style={{'textDecoration': 'none'}} to='/profile'><li>Profile</li></Link>
             <Link style={{'textDecoration': 'none'}} to='/mylist'><li>My List</li></Link>
-            <li onClick={LogOut}>Logout</li>
+            <Link style={{'textDecoration': 'none'}} to='/'><li onClick={LogOut}>Logout</li></Link>
           </ul>
         </Modal>
     </header>

@@ -1,13 +1,16 @@
-import React,{ useEffect, useState } from 'react';
+import React,{ useEffect, useState, useContext } from 'react';
 import './header.css';
 import  Modal  from 'react-modal';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthContext';
 
 
 Modal.setAppElement('#root');
 function Header() {
-  const [blackHeader, setBlackHeader] = useState(false)
-  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [blackHeader, setBlackHeader] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const { LogOut } = useContext(AuthContext);
 
   useEffect(() => {
     const scrollListener = () => {
@@ -49,9 +52,9 @@ function Header() {
         className='modal-content'
         >
           <ul>
-            <li>Profile</li>
+            <Link style={{'textDecoration': 'none'}} to='/profile'><li>Profile</li></Link>
             <Link style={{'textDecoration': 'none'}} to='/mylist'><li>My List</li></Link>
-            <li>Logout</li>
+            <li onClick={LogOut}>Logout</li>
           </ul>
         </Modal>
     </header>

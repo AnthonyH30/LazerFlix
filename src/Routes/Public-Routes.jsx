@@ -1,18 +1,16 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MyList from "../Pages/MyList/MyList";
 import Error from "../Pages/Error/Error";
-import Home from "../Pages/Home/Home";
+import Login from "../Pages/Login/Login";
 
-function Rotas(){
+function PrivateRotes(){
     return(
         <Router>
             <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/mylist' element={<MyList />} />
+                <Route path='/' exact element={<Login />} />
                 <Route path='*' element={<Error />} />
             </Routes>
         </Router>
     )
 }
 
-export default Rotas;
+export default PrivateRotes;

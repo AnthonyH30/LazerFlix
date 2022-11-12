@@ -74,6 +74,7 @@ header.black{
     flex-direction: column;
     gap: 50px;
     list-style: none;
+    text-align: center;
 }
 
 .modal-content li{
